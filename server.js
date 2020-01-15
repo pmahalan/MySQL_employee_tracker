@@ -18,7 +18,7 @@ const connection = mysql.createConnection({
 
   connection.connect(function(err) {
     if (err) throw err;
-    console.log("I found the database!");
+    starter();
   });
 
 //__________________________________________________________
@@ -81,24 +81,30 @@ function starter() {
 
 //__________________________________________________________
 function viewdpartments(){
-
+    var query = "SELECT * FROM department";
+    connection.query(query, function(err, res) {
+        if (err) throw err;
+        console.table(res);
+        starter();
+    })
+    //id
+    //department_name
 };
 
 function viewroles(){
-
+    var query = "SELECT * FROM role";
+    connection.query(query, function(err, res) {
+        if (err) throw err;
+        console.table(res);
+        starter();
+    })
 };
 
 function viewEmployees(){
-    const query = "select employee.id, employee.first_name, employee.last_name, employee_role.title, department.name as 'Department', employee_role.salary,"
-    query += "from employee where employee.manager_id = employee.id"
-    query +=
-
-    connection.query(query, function (err, res) {
-        if (err) throw err
-        for (i = 0; i <res.length; i++) {
-
-            console.table(res[i])
-        }
+    var query = "SELECT * FROM employee";
+    connection.query(query, function(err, res) {
+        if (err) throw err;
+        console.table(res);
         starter();
     })
 };
